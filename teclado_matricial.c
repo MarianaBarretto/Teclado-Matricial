@@ -40,7 +40,7 @@ void init_gpio() {
         gpio_pull_up(col_pins[i]);
     }
 
-    // Configura os pinos dos LEDs e do buzzer como saídas
+    /*Configura os pinos dos LEDs e do buzzer como saídas*/
     gpio_init(RED_LED);
     gpio_init(GREEN_LED);
     gpio_init(BLUE_LED);
@@ -86,15 +86,51 @@ char scan_keypad() {
 
 // Função para ligar e desligar LEDs
 
+/ Função para ligar e desligar LEDs
+int led_state_red = 0;   /*0: false, 1: true*/ 
+int led_state_green = 0;
+int led_state_blue = 0;
 
-Sugestao: ADICIONE A FUNÇAO DE CONTROLE DE LEDS AQUI {
-
-
-
-
-  
+void setup_leds() { /*Configuração dos pinos do led*/
+    gpio_init(LED_RED);
+    gpio_set_dir(LED_RED, GPIO_OUT);
+    gpio_init(LED_GREEN);
+    gpio_set_dir(LED_GREEN, GPIO_OUT);
+    gpio_init(LED_BLUE);
+    gpio_set_dir(LED_BLUE, GPIO_OUT);
 }
-
+void leds(char key) {
+    switch (key) { 
+        case 'A': // LED vermelho
+            gpio_put(RED_LED, !led_state_red);  // Alternando o estado do LED
+            led_state_red = !led_state_red;     // Atualizando o estado
+            break;
+        case 'B': // LED verde
+            gpio_put(GREEN_LED, !led_state_green); // Repetindo a mesma logica 
+            led_state_green = !led_state_green;
+            break;
+        case 'C': // LED azul
+            gpio_put(BLUE_LED, !led_state_blue);
+            led_state_blue = !led_state_blue;
+            break;
+        case 'D': // Todos os LEDs
+            gpio_put(RED_LED, !led_state_red);
+            gpio_put(GREEN_LED, !led_state_green);
+            gpio_put(BLUE_LED, !led_state_blue);
+            led_state_red = !led_state_red;
+            led_state_green = !led_state_green;
+            led_state_blue = !led_state_blue;
+            break;
+        case '0': // Desligando todos os LEDs
+            gpio_put(RED_LED, 0);
+            gpio_put(GREEN_LED, 0);
+            gpio_put(BLUE_LED, 0);
+            led_state_red = 0;
+            led_state_green = 0;
+            led_state_blue = 0;
+            break;
+    }
+}
 
 // Função para mostrar o menu
 void menu() {
