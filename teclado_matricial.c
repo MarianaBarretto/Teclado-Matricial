@@ -92,7 +92,7 @@ char scan_keypad() {
 // Função para ligar e desligar LEDs
 
 / Função para ligar e desligar LEDs
-int led_state_red = 0;   /*0: false, 1: true*/ 
+int led_state_red = 0;   /*0: false , 1: true*/ 
 int led_state_green = 0;
 int led_state_blue = 0;
 
