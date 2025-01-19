@@ -89,7 +89,7 @@ char scan_keypad() {
     return 0;  // Retorna 0 se nenhuma tecla foi pressionada
 }
 
-// Função para ligar e desligar LEDs
+// Função para ligar e desligar LEDS
 
 / Função para ligar e desligar LEDs
 int led_state_red = 0;   /*0: false , 1: true*/ 
